@@ -52,7 +52,5 @@ Thumbs.db
 build/
 addons/
 coverage/
-*.env
-*.env.example
 logs/
 
