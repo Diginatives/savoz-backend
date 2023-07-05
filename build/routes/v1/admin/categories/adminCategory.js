@@ -315,7 +315,6 @@ router.get('/get-categories', (0, asyncHandler_1.default)(function (req, res) { 
             case 0: return [4 /*yield*/, SubCategoryRepo_1.default.findByMainCategoryId(1)];
             case 1:
                 categories = _c.sent();
-                console.log(categories, 'categories');
                 if (!categories)
                     throw new ApiResponse_1.BadRequestResponse('Categories not found').send(res);
                 _a = ApiResponse_1.SuccessResponse.bind;
