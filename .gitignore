@@ -49,7 +49,6 @@ Thumbs.db
 *.mov
 *.wmv
 
-build/
 addons/
 coverage/
 logs/
