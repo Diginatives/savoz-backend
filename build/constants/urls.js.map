@@ -1,1 +1,0 @@
-{"version":3,"file":"urls.js","sourceRoot":"","sources":["../../src/constants/urls.ts"],"names":[],"mappings":";;AAAA,IAAM,MAAM,GAAG;IACb,YAAY,EAAE,2BAA2B;IACzC,iBAAiB,EAAE,4BAA4B;IAC/C,oBAAoB,EAAE,mBAAmB;IACzC,wBAAwB,EAAE,kCAAkC;IAC5D,mDAAmD;IACnD,mBAAmB,EAAE,eAAe;IACpC,iBAAiB,EAAE,gCAAgC;IACnD,wBAAwB,EAAE,qBAAqB;CAChD,CAAC;AAEF,kBAAe,EAAE,MAAM,QAAA,EAAE,CAAC"}
