@@ -122,20 +122,21 @@ var unLinkFile = function (directory, url) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.unLinkFile = unLinkFile;
+// https://api.savoz.pk/v1/admin/employees/get-employees?page=1
 var getHomeUrl = function (url) {
     var envValue = process.env.NODE_ENV || 'development';
     if (envValue === 'development') {
-        return "https://mashghol.com/savoz-backend/".concat(url);
+        return "https://api.savoz.pk/savoz-backend/".concat(url);
     }
-    return "https://mashghol.com/savoz-backend/".concat(url);
+    return "https://api.savoz.pk/savoz-backend/".concat(url);
 };
 exports.getHomeUrl = getHomeUrl;
 var getHomeForImage = function (url) {
     var envValue = process.env.NODE_ENV || 'development';
     if (envValue === 'development') {
-        return "https://mashghol.com/".concat(url);
+        return "https://api.savoz.pk/".concat(url);
     }
-    return "https://mashghol.com/".concat(url);
+    return "https://api.savoz.pk/".concat(url);
 };
 exports.getHomeForImage = getHomeForImage;
 var transferAmountForStripe = function (rate) {
