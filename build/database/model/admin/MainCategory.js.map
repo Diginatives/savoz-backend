@@ -1,1 +1,0 @@
-{"version":3,"file":"MainCategory.js","sourceRoot":"","sources":["../../../../src/database/model/admin/MainCategory.ts"],"names":[],"mappings":";;;AAAa,QAAA,wBAAwB,GAAG,gBAAgB,CAAC;AAE5C,QAAA,iBAAiB,GAAG;IAC/B,EAAE,EAAE,IAAI;IACR,IAAI,EAAE,MAAM;IACZ,WAAW,EAAE,aAAa;IAC1B,KAAK,EAAE,OAAO;IACd,QAAQ,EAAE,UAAU;IACpB,SAAS,EAAE,WAAW;IACtB,SAAS,EAAE,WAAW;CACvB,CAAC"}
