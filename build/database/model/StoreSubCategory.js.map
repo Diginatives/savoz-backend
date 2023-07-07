@@ -1,0 +1,1 @@
+{"version":3,"file":"StoreSubCategory.js","sourceRoot":"","sources":["../../../src/database/model/StoreSubCategory.ts"],"names":[],"mappings":";;;AAAa,QAAA,6BAA6B,GAAG,oBAAoB,CAAC;AAErD,QAAA,sBAAsB,GAAG;IACpC,EAAE,EAAE,IAAI;IACR,aAAa,EAAE,eAAe;IAC9B,OAAO,EAAE,SAAS;IAClB,SAAS,EAAE,WAAW;IACtB,SAAS,EAAE,WAAW;CACvB,CAAC"}
