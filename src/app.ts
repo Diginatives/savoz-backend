@@ -3,7 +3,7 @@ import Logger from './core/Logger';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import multer from 'multer';
-import { corsUrl, environment, port } from './config';
+import { corsUrl, environment } from './config';
 import './database'; // initialize database
 import { NotFoundError, ApiError, InternalError } from './core/ApiError';
 import routesV1 from './routes/v1';
@@ -109,11 +109,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     ApiError.handle(new InternalError(), res);
   }
 });
-app
-  .listen(port, () => {
-    console.log(`server running on port : ${port}`);
-    Logger.info(`server running on port : ${port}`);
-  })
-  .on('error', (e) => Logger.error(e));
 
 export default app;

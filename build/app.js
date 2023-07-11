@@ -103,11 +103,5 @@ app.use(function (err, req, res, next) {
         ApiError_1.ApiError.handle(new ApiError_1.InternalError(), res);
     }
 });
-app
-    .listen(config_1.port, function () {
-    console.log("server running on port : ".concat(config_1.port));
-    Logger_1.default.info("server running on port : ".concat(config_1.port));
-})
-    .on('error', function (e) { return Logger_1.default.error(e); });
 exports.default = app;
 //# sourceMappingURL=app.js.map
