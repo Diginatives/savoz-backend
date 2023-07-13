@@ -9,6 +9,7 @@ var app_1 = __importDefault(require("./app"));
 app_1.default
     .listen(config_1.port, function () {
     Logger_1.default.info("server running on port : ".concat(config_1.port));
+    console.log("server running on port : ".concat(config_1.port));
 })
     .on('error', function (e) { return Logger_1.default.error(e); });
 //# sourceMappingURL=index.js.map

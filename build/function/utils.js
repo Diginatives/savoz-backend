@@ -126,17 +126,17 @@ exports.unLinkFile = unLinkFile;
 var getHomeUrl = function (url) {
     var envValue = process.env.NODE_ENV || 'development';
     if (envValue === 'development') {
-        return "https://mashghol.com/savoz-backend/".concat(url);
+        return "https://api.savoz.pk/api/".concat(url);
     }
-    return "https://mashghol.com/savoz-backend/".concat(url);
+    return "https://api.savoz.pk/api/".concat(url);
 };
 exports.getHomeUrl = getHomeUrl;
 var getHomeForImage = function (url) {
     var envValue = process.env.NODE_ENV || 'development';
     if (envValue === 'development') {
-        return "https://mashghol.com/".concat(url);
+        return "https://api.savoz.pk/".concat(url);
     }
-    return "https://mashghol.com/".concat(url);
+    return "https://api.savoz.pk/".concat(url);
 };
 exports.getHomeForImage = getHomeForImage;
 var transferAmountForStripe = function (rate) {

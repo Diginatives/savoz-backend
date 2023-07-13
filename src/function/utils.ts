@@ -78,17 +78,17 @@ export const unLinkFile = async (directory: string, url: string) => {
 export const getHomeUrl = (url: string) => {
   const envValue: string = process.env.NODE_ENV || 'development';
   if (envValue === 'development') {
-    return `https://mashghol.com/savoz-backend/${url}`;
+    return `https://api.savoz.pk/api/${url}`;
   }
-  return `https://mashghol.com/savoz-backend/${url}`;
+  return `https://api.savoz.pk/api/${url}`;
 };
 
 export const getHomeForImage = (url: string) => {
   const envValue: string = process.env.NODE_ENV || 'development';
   if (envValue === 'development') {
-    return `https://mashghol.com/${url}`;
+    return `https://api.savoz.pk/${url}`;
   }
-  return `https://mashghol.com/${url}`;
+  return `https://api.savoz.pk/${url}`;
 };
 
 export const transferAmountForStripe = (rate: string) => {
