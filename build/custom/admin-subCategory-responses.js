@@ -60,7 +60,12 @@ function customAdminSubCategoryResponse(data) {
                 subCategoryCreatedAt: data.subCategoryCreatedAt,
                 subCategoryUpdatedAt: data.subCategoryUpdatedAt,
                 total_proucts: data.total_proucts,
+                storeSubCategoryId: data.id,
+                storeId: data.storeId,
+                storeSubCategoryCreatedAt: data.createdAt,
+                storeSubCategoryUpdatedAt: data.updatedAt,
             };
+            // console.log(subCategoryObj, 'subCategoryObj');
             return [2 /*return*/, subCategoryObj];
         });
     });
@@ -85,7 +90,9 @@ function customSubCategoryCollectionResponse(data) {
                 case 3:
                     i++;
                     return [3 /*break*/, 1];
-                case 4: return [2 /*return*/, subCategories];
+                case 4: 
+                // console.log(subCategories, 'tayayb chohan');
+                return [2 /*return*/, subCategories];
             }
         });
     });

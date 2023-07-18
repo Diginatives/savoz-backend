@@ -5,8 +5,13 @@ import {
   PRODUCT_CATEGORIES_COL,
   PRODUCT_CATEGORIES_TABLE_NAME,
 } from '../../model/admin/ProductCategory';
+import { STORE_COL, STORE_TABLE_NAME } from '../../model/Store';
+import {
+  STORE_SUB_CATEGORY_COL,
+  STORE_SUB_CATEGORY_TABLE_NAME,
+} from '../../model/StoreSubCategory';
 import { PRODUCT_COL, PRODUCT_TABLE_NAME } from '../../model/Product';
-
+console.log(STORE_COL, STORE_TABLE_NAME, STORE_SUB_CATEGORY_COL, STORE_SUB_CATEGORY_TABLE_NAME);
 export default class SubCategoryRepo {
   public static async findById(id: number): Promise<SubCategory | null> {
     return executeQuery(
@@ -26,11 +31,13 @@ export default class SubCategoryRepo {
 
   public static async findByMainCategoryId(mainCategoryId: number): Promise<SubCategory[] | null> {
     return executeQuery(
-      `SELECT ${SUB_CATEGORY_TABLE_NAME}.*, 
+      `SELECT ${SUB_CATEGORY_TABLE_NAME}.*,${STORE_SUB_CATEGORY_TABLE_NAME}.*,  
       sum(case when ${PRODUCT_TABLE_NAME}.${PRODUCT_COL.productCategoryId} is not null THEN  1 else 0 END)  as total_proucts
       FROM ${SUB_CATEGORY_TABLE_NAME}
       LEFT JOIN ${PRODUCT_CATEGORIES_TABLE_NAME} on ${PRODUCT_CATEGORIES_TABLE_NAME}.${PRODUCT_CATEGORIES_COL.subCategoryId} = ${SUB_CATEGORY_TABLE_NAME}.${SUB_CATEGORY_COL.id}
       LEFT JOIN ${PRODUCT_TABLE_NAME} on ${PRODUCT_TABLE_NAME}.${PRODUCT_COL.productCategoryId} = ${PRODUCT_CATEGORIES_TABLE_NAME}.${PRODUCT_CATEGORIES_COL.id}
+      LEFT JOIN ${STORE_SUB_CATEGORY_TABLE_NAME} on ${SUB_CATEGORY_TABLE_NAME}.${SUB_CATEGORY_COL.id} = ${STORE_SUB_CATEGORY_TABLE_NAME}.${STORE_SUB_CATEGORY_COL.subCategoryId}
+      AND ${STORE_SUB_CATEGORY_TABLE_NAME}.${STORE_SUB_CATEGORY_COL.storeId} in (select ${STORE_TABLE_NAME}.${STORE_COL.storeId} from ${STORE_TABLE_NAME} where ${STORE_COL.storeType}=24)
       WHERE ${SUB_CATEGORY_TABLE_NAME}.${SUB_CATEGORY_COL.mainCategoryId}='${mainCategoryId}'
       AND ${SUB_CATEGORY_TABLE_NAME}.${SUB_CATEGORY_COL.isDeleted}=0
       GROUP BY ${SUB_CATEGORY_TABLE_NAME}.${SUB_CATEGORY_COL.id}

@@ -2,6 +2,7 @@ import urls from '../constants/urls';
 import { getHomeForImage, getHomeUrl } from '../function/utils';
 
 export async function customSubCategoryResponse(data: any) {
+  
   const subCategoryObj = {
     subCategoryId: data.subCategoryId,
     subCategoryMainCategoryId: data.subCategoryMainCategoryId,

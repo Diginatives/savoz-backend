@@ -2,6 +2,7 @@ import urls from '../constants/urls';
 import { getHomeForImage, getHomeUrl } from '../function/utils';
 
 export async function customAdminSubCategoryResponse(data: any) {
+  // console.log(data, 'data');
   const subCategoryObj = {
     subCategoryId: data.subCategoryId,
     subCategoryMainCategoryId: data.subCategoryMainCategoryId,
@@ -16,7 +17,12 @@ export async function customAdminSubCategoryResponse(data: any) {
     subCategoryCreatedAt: data.subCategoryCreatedAt,
     subCategoryUpdatedAt: data.subCategoryUpdatedAt,
     total_proucts: data.total_proucts,
+    storeSubCategoryId: data.id,
+    storeId: data.storeId,
+    storeSubCategoryCreatedAt: data.createdAt,
+    storeSubCategoryUpdatedAt: data.updatedAt,
   };
+  // console.log(subCategoryObj, 'subCategoryObj');
   return subCategoryObj;
 }
 
@@ -26,5 +32,6 @@ export async function customSubCategoryCollectionResponse(data: any) {
   for (i = 0; i < data.length; i++) {
     subCategories.push(await customAdminSubCategoryResponse(data[i]));
   }
+  // console.log(subCategories, 'tayayb chohan');
   return subCategories;
 }

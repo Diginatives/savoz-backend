@@ -222,7 +222,6 @@ router.get(
       'success',
       await customSubCategoryCollectionResponse(categories),
     ).send(res);
-    
   }),
 );
 

@@ -3,6 +3,7 @@ import { BadRequestError } from '../../../core/ApiError';
 import { BadRequestResponse, SuccessResponse } from '../../../core/ApiResponse';
 import { customSubCategoryCollectionResponse } from '../../../custom/subCategory-responses';
 import SubCategory from '../../../database/model/SubCategory';
+import SubCategoryRepo from '../../../database/repository/admin/SubCategoryRepo';
 import CategoryRepo from '../../../database/repository/CategoryRepo';
 import asyncHandler from '../../../helpers/asyncHandler';
 import validator, { ValidationSource } from '../../../helpers/validator';
@@ -46,12 +47,28 @@ router.post(
   validator(schema.subCategoryListing, ValidationSource.BODY),
   asyncHandler(async (req: ProtectedRequest, res) => {
     const { type } = req.body;
-    const subCategoriesList = await CategoryRepo.findByType(type);
+    const categories = await SubCategoryRepo.findByMainCategoryId(1);
+    if (!categories) throw new BadRequestResponse('Categories not found').send(res);
+    // const subCategoriesList = await CategoryRepo.findByType(type);
     return new SuccessResponse(
       'success',
-      await customSubCategoryCollectionResponse(subCategoriesList),
+      // await customSubCategoryCollectionResponse(subCategoriesList),
+      await customSubCategoryCollectionResponse(categories),
     ).send(res);
   }),
 );
+
+// router.get(
+//   '/get-categories',
+//   asyncHandler(async (req: ProtectedRequest, res) => {
+//     const categories = await SubCategoryRepo.findByMainCategoryId(1);
+//     if (!categories) throw new BadRequestResponse('Categories not found').send(res);
+//     return new SuccessResponse(
+//       'success',
+//       await customSubCategoryCollectionResponse(categories),
+//     ).send(res);
+
+//   }),
+// );
 
 export default router;

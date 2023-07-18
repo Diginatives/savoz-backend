@@ -53,12 +53,12 @@ function customUserResponse(data) {
                 lastName: data.lastName,
                 phone: data.phone,
                 email: data.email,
-                address: data.address || null,
-                dob: data.dob || null,
-                userLat: data.userLat || null,
-                userLng: data.userLng || null,
-                stripeId: data.stripeId || null,
-                cardId: data.cardId || null,
+                address: data.address || '',
+                dob: data.dob || '',
+                userLat: data.userLat || '',
+                userLng: data.userLng || '',
+                stripeId: data.stripeId || '',
+                cardId: data.cardId || '',
                 avatar: data.avatar
                     ? (0, utils_1.getHomeUrl)(urls_1.default.values.imageLiveUrl) + data.avatar
                     : "".concat((0, utils_1.getHomeUrl)(urls_1.default.values.imageLiveUrl), "imgPlaceholder.png"),
