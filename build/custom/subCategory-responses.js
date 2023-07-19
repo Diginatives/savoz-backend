@@ -58,10 +58,15 @@ function customSubCategoryResponse(data) {
                 subCategoryIsActive: data.subCategoryIsActive,
                 subCategoryCreatedAt: data.subCategoryCreatedAt,
                 subCategoryUpdatedAt: data.subCategoryUpdatedAt,
-                storeSubCategoryId: data.id,
-                storeId: data.storeId,
-                storeSubCategoryCreatedAt: data.createdAt,
-                storeSubCategoryUpdatedAt: data.updatedAt,
+                storeId: data.mystoreId,
+                storeSubCategoryId: data.mystoreSubCategoryId,
+                total_proucts: data.total_proucts,
+                storeSubCategoryCreatedAt: data.subCategoryCreatedAt,
+                storeSubCategoryUpdatedAt: data.subCategoryUpdatedAt,
+                // storeSubCategoryId: data.id,
+                // storeId: data.storeId,
+                // storeSubCategoryCreatedAt: data.createdAt,
+                // storeSubCategoryUpdatedAt: data.updatedAt,
             };
             return [2 /*return*/, subCategoryObj];
         });
