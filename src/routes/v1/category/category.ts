@@ -45,10 +45,10 @@ router.post(
 router.post(
   '/sub_category_listing',
   validator(schema.subCategoryListing, ValidationSource.BODY),
-  asyncHandler(async (req: ProtectedRequest, res) => {
+  asyncHandler(async (req, res) => {
     const { type } = req.body;
     const categories = await SubCategoryRepo.findByMainCategoryId(1);
-    if (!categories) throw new BadRequestResponse('Categories not found').send(res);
+    // if (!categories) throw new BadRequestResponse('Categories not found').send(res);
     // const subCategoriesList = await CategoryRepo.findByType(type);
     return new SuccessResponse(
       'success',

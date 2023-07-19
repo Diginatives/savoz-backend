@@ -43,7 +43,6 @@ var ProductCategory_1 = require("../../model/admin/ProductCategory");
 var Store_1 = require("../../model/Store");
 var StoreSubCategory_1 = require("../../model/StoreSubCategory");
 var Product_1 = require("../../model/Product");
-console.log(Store_1.STORE_COL, Store_1.STORE_TABLE_NAME, StoreSubCategory_1.STORE_SUB_CATEGORY_COL, StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME);
 var SubCategoryRepo = /** @class */ (function () {
     function SubCategoryRepo() {
     }

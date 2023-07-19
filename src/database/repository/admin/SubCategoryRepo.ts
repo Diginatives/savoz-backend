@@ -11,7 +11,6 @@ import {
   STORE_SUB_CATEGORY_TABLE_NAME,
 } from '../../model/StoreSubCategory';
 import { PRODUCT_COL, PRODUCT_TABLE_NAME } from '../../model/Product';
-console.log(STORE_COL, STORE_TABLE_NAME, STORE_SUB_CATEGORY_COL, STORE_SUB_CATEGORY_TABLE_NAME);
 export default class SubCategoryRepo {
   public static async findById(id: number): Promise<SubCategory | null> {
     return executeQuery(
