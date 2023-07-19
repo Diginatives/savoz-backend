@@ -113,13 +113,12 @@ router.post('/sub_category_listing', (0, validator_1.default)(schema_1.default.s
                 return [4 /*yield*/, SubCategoryRepo_1.default.findByMainCategoryId(1)];
             case 1:
                 categories = _c.sent();
-                if (!categories)
-                    throw new ApiResponse_1.BadRequestResponse('Categories not found').send(res);
                 _a = ApiResponse_1.SuccessResponse.bind;
                 _b = [void 0, 'success'];
                 // await customSubCategoryCollectionResponse(subCategoriesList),
                 return [4 /*yield*/, (0, subCategory_responses_1.customSubCategoryCollectionResponse)(categories)];
             case 2: 
+            // if (!categories) throw new BadRequestResponse('Categories not found').send(res);
             // const subCategoriesList = await CategoryRepo.findByType(type);
             return [2 /*return*/, new (_a.apply(ApiResponse_1.SuccessResponse, _b.concat([
                     // await customSubCategoryCollectionResponse(subCategoriesList),
