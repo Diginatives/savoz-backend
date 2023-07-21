@@ -65,7 +65,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var ApiResponse_1 = require("../../../core/ApiResponse");
 var subCategory_responses_1 = require("../../../custom/subCategory-responses");
-var SubCategoryRepo_1 = __importDefault(require("../../../database/repository/admin/SubCategoryRepo"));
 var CategoryRepo_1 = __importDefault(require("../../../database/repository/CategoryRepo"));
 var asyncHandler_1 = __importDefault(require("../../../helpers/asyncHandler"));
 var validator_1 = __importStar(require("../../../helpers/validator"));
@@ -105,24 +104,18 @@ router.post('/sub_category', (0, validator_1.default)(schema_1.default.subCatego
     });
 }); }));
 router.post('/sub_category_listing', (0, validator_1.default)(schema_1.default.subCategoryListing, validator_1.ValidationSource.BODY), (0, asyncHandler_1.default)(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var type, categories, _a, _b;
+    var type, subCategoriesList, _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
                 type = req.body.type;
-                return [4 /*yield*/, SubCategoryRepo_1.default.findByMainCategoryId(1)];
+                return [4 /*yield*/, CategoryRepo_1.default.findByType(type)];
             case 1:
-                categories = _c.sent();
+                subCategoriesList = _c.sent();
                 _a = ApiResponse_1.SuccessResponse.bind;
                 _b = [void 0, 'success'];
-                // await customSubCategoryCollectionResponse(subCategoriesList),
-                return [4 /*yield*/, (0, subCategory_responses_1.customSubCategoryCollectionResponse)(categories)];
-            case 2: 
-            // if (!categories) throw new BadRequestResponse('Categories not found').send(res);
-            // const subCategoriesList = await CategoryRepo.findByType(type);
-            return [2 /*return*/, new (_a.apply(ApiResponse_1.SuccessResponse, _b.concat([
-                    // await customSubCategoryCollectionResponse(subCategoriesList),
-                    _c.sent()])))().send(res)];
+                return [4 /*yield*/, (0, subCategory_responses_1.customSubCategoryCollectionResponse)(subCategoriesList)];
+            case 2: return [2 /*return*/, new (_a.apply(ApiResponse_1.SuccessResponse, _b.concat([_c.sent()])))().send(res)];
         }
     });
 }); }));

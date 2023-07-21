@@ -14,15 +14,15 @@ export async function customSubCategoryResponse(data: any) {
     subCategoryIsActive: data.subCategoryIsActive,
     subCategoryCreatedAt: data.subCategoryCreatedAt,
     subCategoryUpdatedAt: data.subCategoryUpdatedAt,
-    storeId: data.mystoreId,
-    storeSubCategoryId: data.mystoreSubCategoryId,
+    // storeId: data.mystoreId,
+    // storeSubCategoryId: data.mystoreSubCategoryId,
     total_proucts: data.total_proucts,
-    storeSubCategoryCreatedAt: data.subCategoryCreatedAt,
-    storeSubCategoryUpdatedAt: data.subCategoryUpdatedAt,
-    // storeSubCategoryId: data.id,
-    // storeId: data.storeId,
-    // storeSubCategoryCreatedAt: data.createdAt,
-    // storeSubCategoryUpdatedAt: data.updatedAt,
+    // storeSubCategoryCreatedAt: data.subCategoryCreatedAt,
+    // storeSubCategoryUpdatedAt: data.subCategoryUpdatedAt,
+    storeSubCategoryId: data.id,
+    storeId: data.storeId,
+    storeSubCategoryCreatedAt: data.createdAt,
+    storeSubCategoryUpdatedAt: data.updatedAt,
   };
 
   return subCategoryObj;
