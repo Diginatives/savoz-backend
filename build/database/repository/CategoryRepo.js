@@ -62,7 +62,6 @@ var CategoryRepo = /** @class */ (function () {
             var query;
             return __generator(this, function (_a) {
                 query = "Select * from ".concat(SubCategory_1.SUB_CATEGORY_TABLE_NAME, " inner join ").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME, " on ").concat(SubCategory_1.SUB_CATEGORY_TABLE_NAME, ".").concat(SubCategory_1.SUB_CATEGORY_COL.id, " = ").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME, ".").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_COL.subCategoryId, "\n    and ").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME, ".").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_COL.storeId, " in (select ").concat(Store_1.STORE_TABLE_NAME, ".").concat(Store_1.STORE_COL.storeId, " from ").concat(Store_1.STORE_TABLE_NAME, " where ").concat(Store_1.STORE_COL.storeType, " = ").concat(type, ")");
-                console.log(query, 'tayyab');
                 return [2 /*return*/, (0, __1.executeQuery)(query)];
             });
         });

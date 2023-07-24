@@ -53,6 +53,7 @@ router.post(
       image: imageFile,
       isActive: isActive,
     };
+    
     const isCategoryExist: any = await ProductCategoryRepo.fidnByName(name);
     if (isCategoryExist && isCategoryExist.length > 0)
       throw new BadRequestResponse(

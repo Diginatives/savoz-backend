@@ -6,7 +6,7 @@ import {
   PRODUCT_CATEGORIES_TABLE_NAME,
 } from '../../model/admin/ProductCategory';
 import { STORE_COL, STORE_TABLE_NAME } from '../../model/Store';
-import {
+import StoreSubCategory, {
   STORE_SUB_CATEGORY_COL,
   STORE_SUB_CATEGORY_TABLE_NAME,
 } from '../../model/StoreSubCategory';
@@ -18,6 +18,12 @@ export default class SubCategoryRepo {
       WHERE ${SUB_CATEGORY_COL.id}='${id}'
       AND ${SUB_CATEGORY_TABLE_NAME}.${SUB_CATEGORY_COL.isDeleted}=0`,
     );
+  }
+  public static async createStoreSubCategory(
+    obj: StoreSubCategory,
+  ): Promise<{ storeSubCategory: StoreSubCategory }> {
+    const res: StoreSubCategory = await insertRecord(STORE_SUB_CATEGORY_TABLE_NAME, obj);
+    return { storeSubCategory: res };
   }
 
   public static async fidnByName(name: string): Promise<SubCategory | null> {

@@ -4,6 +4,7 @@ import ProductCategory, {
   PRODUCT_CATEGORIES_TABLE_NAME,
 } from '../../model/admin/ProductCategory';
 
+
 export default class ProductCategoryRepo {
   private static searchCondition(id: any, searchTerm: string) {
     let condition = '';
@@ -16,6 +17,7 @@ export default class ProductCategoryRepo {
     }
     return condition;
   }
+
   public static findBySearch(
     id: any,
     searchTerm: string,
@@ -71,6 +73,7 @@ export default class ProductCategoryRepo {
     const res: ProductCategory = await insertRecord(PRODUCT_CATEGORIES_TABLE_NAME, obj);
     return { productCategory: res };
   }
+  
 
   public static async updateProductCategory(
     id: number,

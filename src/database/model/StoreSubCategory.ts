@@ -9,7 +9,7 @@ export const STORE_SUB_CATEGORY_COL = {
 };
 
 export default interface StoreSubCategory {
-  id: number;
+  id?: number;
   subCategoryId: number;
   storeId: string;
   createdAt?: Date;

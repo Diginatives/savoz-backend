@@ -115,6 +115,23 @@ export default class ProductRepo {
     limit: number,
     offSet: number,
   ): Promise<any> {
+    console.log(`Select *,${FAVOURITE_PRODUCT_TABLE_NAME}.${
+      FAVOURITE_PRODUCT_COL.id
+    } as ${`favouriteId`}, 
+    ${PRODUCT_TABLE_NAME}.${PRODUCT_COL.productId} as ${`productId`}
+    from ${PRODUCT_TABLE_NAME} inner join ${PRODUCT_CATEGORY_TABLE_NAME} on ${PRODUCT_TABLE_NAME}.${
+      PRODUCT_COL.productCategoryId
+    } = ${PRODUCT_CATEGORY_TABLE_NAME}.${PRODUCT_CATEGORY_COL.id}
+    left join ${FAVOURITE_PRODUCT_TABLE_NAME} on ${FAVOURITE_PRODUCT_TABLE_NAME}.${
+      FAVOURITE_PRODUCT_COL.productId
+    } = ${PRODUCT_TABLE_NAME}.${PRODUCT_COL.productId} and ${FAVOURITE_PRODUCT_TABLE_NAME}.${
+      FAVOURITE_PRODUCT_COL.userId
+    } = ${userId}
+    where ${PRODUCT_CATEGORY_TABLE_NAME}.${
+      PRODUCT_CATEGORY_COL.subCategoryId
+    }  = ${id} && ${PRODUCT_TABLE_NAME}.${
+      PRODUCT_COL.productStoreId
+    } = ${storeId} LIMIT ${limit} OFFSET ${offSet}`);
     const query: string = `Select *,${FAVOURITE_PRODUCT_TABLE_NAME}.${
       FAVOURITE_PRODUCT_COL.id
     } as ${`favouriteId`}, 

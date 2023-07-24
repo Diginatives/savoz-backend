@@ -17,6 +17,10 @@ import {
   customAdminSubCategoryResponse,
   customSubCategoryCollectionResponse,
 } from '../../../../custom/admin-subCategory-responses';
+import StoreSubCategory, {
+  STORE_SUB_CATEGORY_COL,
+  STORE_SUB_CATEGORY_TABLE_NAME,
+} from '../../../../database/model/StoreSubCategory';
 import ProductCategoryRepo from '../../../../database/repository/admin/ProductCategoryRepo';
 import ProductRepo from '../../../../database/repository/admin/ProductRepo';
 import MainCategoryRepo from '../../../../database/repository/admin/MainCategoryRepo';
@@ -55,14 +59,24 @@ router.post(
       subCategoryCreatedAt: now,
       subCategoryUpdatedAt: now,
     };
+
     const isCategoryExist: any = await SubCategoryRepo.fidnByName(name);
+
     if (isCategoryExist && isCategoryExist.length > 0)
       throw new BadRequestResponse('Category already Exist, Please use a different name.').send(
         res,
       );
+    // const StoreSubCategory = await SubCategoryRepo.findByIdStore(id);
+    // console.log(StoreSubCategory, 'StoreSubCategory');
     const SubCategory: any = await SubCategoryRepo.createSubCategory(obj);
     if (!SubCategory) throw new BadRequestResponse('Category not created').send(res);
-
+    const objStore: StoreSubCategory = {
+      subCategoryId: SubCategory.id,
+      storeId: '1',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    const storeSubCategory: any = await SubCategoryRepo.createStoreSubCategory(objStore);
     return new SuccessResponse(
       'Category successfully created',
       await customAdminSubCategoryResponse(SubCategory),

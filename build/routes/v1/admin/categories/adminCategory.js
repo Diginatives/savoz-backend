@@ -82,7 +82,7 @@ var csvToJson = require('csvtojson');
 router.use('/', authentication_1.default);
 /*-------------------------------------------------------------------------*/
 router.post('/add-sub-category', (0, validator_1.default)(schema_1.default.subCategory, validator_1.ValidationSource.BODY), (0, asyncHandler_1.default)(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, description, mainCategoryId, isActive, categoryImage, imageFile, imageName, now, obj, isCategoryExist, SubCategory, _b, _c;
+    var _a, name, description, mainCategoryId, isActive, categoryImage, imageFile, imageName, now, obj, isCategoryExist, SubCategory, objStore, storeSubCategory, _b, _c;
     return __generator(this, function (_d) {
         switch (_d.label) {
             case 0:
@@ -117,10 +117,19 @@ router.post('/add-sub-category', (0, validator_1.default)(schema_1.default.subCa
                 SubCategory = _d.sent();
                 if (!SubCategory)
                     throw new ApiResponse_1.BadRequestResponse('Category not created').send(res);
+                objStore = {
+                    subCategoryId: SubCategory.id,
+                    storeId: '1',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                };
+                return [4 /*yield*/, SubCategoryRepo_1.default.createStoreSubCategory(objStore)];
+            case 3:
+                storeSubCategory = _d.sent();
                 _b = ApiResponse_1.SuccessResponse.bind;
                 _c = [void 0, 'Category successfully created'];
                 return [4 /*yield*/, (0, admin_subCategory_responses_1.customAdminSubCategoryResponse)(SubCategory)];
-            case 3: return [2 /*return*/, new (_b.apply(ApiResponse_1.SuccessResponse, _c.concat([_d.sent()])))().send(res)];
+            case 4: return [2 /*return*/, new (_b.apply(ApiResponse_1.SuccessResponse, _c.concat([_d.sent()])))().send(res)];
         }
     });
 }); }));

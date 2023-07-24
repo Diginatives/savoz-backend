@@ -40,6 +40,7 @@ var SubCategory_1 = require("../../model/SubCategory");
 var index_1 = require("../../index");
 var SubCategory_2 = require("../../model/SubCategory");
 var ProductCategory_1 = require("../../model/admin/ProductCategory");
+var StoreSubCategory_1 = require("../../model/StoreSubCategory");
 var Product_1 = require("../../model/Product");
 var SubCategoryRepo = /** @class */ (function () {
     function SubCategoryRepo() {
@@ -48,6 +49,19 @@ var SubCategoryRepo = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, (0, index_1.executeQuery)("SELECT * FROM ".concat(SubCategory_2.SUB_CATEGORY_TABLE_NAME, " \n      WHERE ").concat(SubCategory_1.SUB_CATEGORY_COL.id, "='").concat(id, "'\n      AND ").concat(SubCategory_2.SUB_CATEGORY_TABLE_NAME, ".").concat(SubCategory_1.SUB_CATEGORY_COL.isDeleted, "=0"))];
+            });
+        });
+    };
+    SubCategoryRepo.createStoreSubCategory = function (obj) {
+        return __awaiter(this, void 0, void 0, function () {
+            var res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, index_1.insertRecord)(StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME, obj)];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, { storeSubCategory: res }];
+                }
             });
         });
     };

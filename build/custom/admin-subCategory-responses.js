@@ -60,10 +60,6 @@ function customAdminSubCategoryResponse(data) {
                 subCategoryCreatedAt: data.subCategoryCreatedAt,
                 subCategoryUpdatedAt: data.subCategoryUpdatedAt,
                 total_proucts: data.total_proucts,
-                storeId: data.mystoreId,
-                storeSubCategoryId: data.mystoreSubCategoryId,
-                storeSubCategoryCreatedAt: data.subCategoryCreatedAt,
-                storeSubCategoryUpdatedAt: data.subCategoryUpdatedAt,
             };
             // console.log(subCategoryObj, 'subCategoryObj');
             return [2 /*return*/, subCategoryObj];

@@ -47,13 +47,10 @@ router.post(
   validator(schema.subCategoryListing, ValidationSource.BODY),
   asyncHandler(async (req, res) => {
     const { type } = req.body;
-    // const categories = await SubCategoryRepo.findByMainCategoryId(1);
-    // if (!categories) throw new BadRequestResponse('Categories not found').send(res);
     const subCategoriesList = await CategoryRepo.findByType(type);
     return new SuccessResponse(
       'success',
       await customSubCategoryCollectionResponse(subCategoriesList),
-      // await customSubCategoryCollectionResponse(categories),
     ).send(res);
   }),
 );
