@@ -4,6 +4,10 @@ import ProductCategory, {
   PRODUCT_CATEGORIES_TABLE_NAME,
 } from '../../model/admin/ProductCategory';
 
+import StoreSubCategory, {
+  STORE_SUB_CATEGORY_COL,
+  STORE_SUB_CATEGORY_TABLE_NAME,
+} from '../../../database/model/StoreSubCategory';
 
 export default class ProductCategoryRepo {
   private static searchCondition(id: any, searchTerm: string) {
@@ -66,6 +70,13 @@ export default class ProductCategoryRepo {
       `,
     );
   }
+  public static deleteStoreSubcategory(subCategoryId: number): Promise<StoreSubCategory | null> {
+    return executeQuery(
+      `DELETE FROM ${STORE_SUB_CATEGORY_TABLE_NAME} 
+      WHERE ${STORE_SUB_CATEGORY_TABLE_NAME}.${STORE_SUB_CATEGORY_COL.subCategoryId}='${subCategoryId}'
+      `,
+    );
+  }
 
   public static async createProductCategory(
     obj: ProductCategory,
@@ -73,7 +84,6 @@ export default class ProductCategoryRepo {
     const res: ProductCategory = await insertRecord(PRODUCT_CATEGORIES_TABLE_NAME, obj);
     return { productCategory: res };
   }
-  
 
   public static async updateProductCategory(
     id: number,

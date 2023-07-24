@@ -276,6 +276,7 @@ router.delete('/delete-category/:categoryId', (0, asyncHandler_1.default)(functi
         switch (_a.label) {
             case 0:
                 categoryId = req.params.categoryId;
+                console.log(categoryId, 'categoryId');
                 return [4 /*yield*/, ProductCategoryRepo_1.default.deleteById(categoryId)];
             case 1:
                 category = _a.sent();

@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("../../index");
 var ProductCategory_1 = require("../../model/admin/ProductCategory");
+var StoreSubCategory_1 = require("../../../database/model/StoreSubCategory");
 var ProductCategoryRepo = /** @class */ (function () {
     function ProductCategoryRepo() {
     }
@@ -70,6 +71,9 @@ var ProductCategoryRepo = /** @class */ (function () {
     };
     ProductCategoryRepo.findById = function (id) {
         return (0, index_1.executeQuery)("SELECT * FROM ".concat(ProductCategory_1.PRODUCT_CATEGORIES_TABLE_NAME, " \n      WHERE ").concat(ProductCategory_1.PRODUCT_CATEGORIES_TABLE_NAME, ".").concat(ProductCategory_1.PRODUCT_CATEGORIES_COL.id, "='").concat(id, "'\n      AND ").concat(ProductCategory_1.PRODUCT_CATEGORIES_COL.isDeleted, "=0\n      "));
+    };
+    ProductCategoryRepo.deleteStoreSubcategory = function (subCategoryId) {
+        return (0, index_1.executeQuery)("DELETE FROM ".concat(StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME, " \n      WHERE ").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_TABLE_NAME, ".").concat(StoreSubCategory_1.STORE_SUB_CATEGORY_COL.subCategoryId, "='").concat(subCategoryId, "'\n      "));
     };
     ProductCategoryRepo.createProductCategory = function (obj) {
         return __awaiter(this, void 0, void 0, function () {

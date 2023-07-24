@@ -53,7 +53,7 @@ router.post(
       image: imageFile,
       isActive: isActive,
     };
-    
+
     const isCategoryExist: any = await ProductCategoryRepo.fidnByName(name);
     if (isCategoryExist && isCategoryExist.length > 0)
       throw new BadRequestResponse(
@@ -187,11 +187,12 @@ router.delete(
   '/delete-category/:categoryId',
   asyncHandler(async (req: ProtectedRequest, res) => {
     const { categoryId } = req.params;
+    console.log(categoryId, 'categoryId');
     const category: any = await ProductCategoryRepo.deleteById(categoryId as unknown as number);
     if (!category) throw new BadRequestResponse('Product Category not found').send(res);
-
     // Deactivate the products when product category is deactivated
     await ProductRepo.productCategoriesDeactivate([categoryId]);
+
     return new SuccessResponse('success', category).send(res);
   }),
 );

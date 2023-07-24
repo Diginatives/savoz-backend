@@ -286,7 +286,7 @@ router.post('/update-category', (0, validator_1.default)(schema_1.default.subCat
     });
 }); }));
 router.delete('/delete-category/:categoryId', (0, asyncHandler_1.default)(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var categoryId, category, proCatsIds, productCats_1;
+    var categoryId, category, storeSubCategory, proCatsIds, productCats_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -296,24 +296,27 @@ router.delete('/delete-category/:categoryId', (0, asyncHandler_1.default)(functi
                 category = _a.sent();
                 if (!category)
                     throw new ApiResponse_1.BadRequestResponse('Category not found').send(res);
-                return [4 /*yield*/, ProductCategoryRepo_1.default.productCategoriesIds(categoryId)];
+                return [4 /*yield*/, ProductCategoryRepo_1.default.deleteStoreSubcategory(categoryId)];
             case 2:
+                storeSubCategory = _a.sent();
+                return [4 /*yield*/, ProductCategoryRepo_1.default.productCategoriesIds(categoryId)];
+            case 3:
                 proCatsIds = _a.sent();
-                if (!(proCatsIds && proCatsIds.length > 0)) return [3 /*break*/, 5];
+                if (!(proCatsIds && proCatsIds.length > 0)) return [3 /*break*/, 6];
                 productCats_1 = [];
                 proCatsIds.forEach(function (element) {
                     productCats_1.push(element.id);
                 });
                 return [4 /*yield*/, ProductCategoryRepo_1.default.productCategoriesDeactivate(productCats_1)];
-            case 3:
+            case 4:
                 _a.sent();
                 // Deactivate the products when product category is deactivated
                 return [4 /*yield*/, ProductRepo_1.default.productCategoriesDeactivate(productCats_1)];
-            case 4:
+            case 5:
                 // Deactivate the products when product category is deactivated
                 _a.sent();
-                _a.label = 5;
-            case 5: return [2 /*return*/, new ApiResponse_1.SuccessResponse('success', category).send(res)];
+                _a.label = 6;
+            case 6: return [2 /*return*/, new ApiResponse_1.SuccessResponse('success', category).send(res)];
         }
     });
 }); }));

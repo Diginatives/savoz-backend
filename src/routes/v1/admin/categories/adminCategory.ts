@@ -208,7 +208,9 @@ router.delete(
     const { categoryId } = req.params;
     const category: any = await SubCategoryRepo.deleteById(categoryId as unknown as number);
     if (!category) throw new BadRequestResponse('Category not found').send(res);
-
+    const storeSubCategory: any = await ProductCategoryRepo.deleteStoreSubcategory(
+      categoryId as unknown as number,
+    );
     // Deactivate the product categories when parent category is deleted
     const proCatsIds = await ProductCategoryRepo.productCategoriesIds(
       categoryId as unknown as number,
