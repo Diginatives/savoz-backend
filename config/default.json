@@ -1,0 +1,10 @@
+{
+  "jwtSecret": "jwtSecretToken",
+  "jwtExpiration": 360000,
+  "development": {
+    "sendGrid": "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"
+  },
+  "logs": {
+    "location": "src/logs"
+  }
+}

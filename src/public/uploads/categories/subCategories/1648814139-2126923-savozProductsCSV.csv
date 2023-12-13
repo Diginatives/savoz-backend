@@ -1,0 +1,4 @@
+productStoreId,productSKU,productBarCode,productName,productQuantity,productPurchasedPrice,productSalePrice,productComparativePrice,productExpiry,productDescription,productDiscountAvailable,productDiscountActive,productIsTaxable,productTaxPercentage,productCategory
+1,SKU123,12345678,test produktss,12,25,34,30,2018-11-28,test description,10,yes,yes,5,Baking
+1,SKU124,12345689,test productsss two,12,25,34,30,2018-11-28,test description for second product,12,no,yes,4,fish
+1,SKU125,12345690,test productssss 3,12,25,34,30,2018-11-28,test description for second product,12,no,yes,4,fis

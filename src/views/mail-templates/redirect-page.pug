@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+  head   
+    title Password Change
+  body
+script(type="text/javascript").
+    let details = navigator.userAgent;
+    console.log('device',details);
+    let regexp = /android|iphone|kindle|ipad/i;
+    let isMobileDevice = regexp.test(details);
+    let downloadLink = document.createElement("a");
+    if (isMobileDevice) downloadLink.href = '!{app}';
+    else downloadLink.href = '!{web}';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
