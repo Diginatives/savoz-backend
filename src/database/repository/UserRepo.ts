@@ -15,9 +15,7 @@ export default class UserRepo {
   }
 
   public static findByEmail(email: string): Promise<User[] | null> {
-    console.log(
-      `Select * from ${USER_TABLE_NAME} where email='${email}' ORDER BY ${USER_TABLE_COL.isActive} DESC`,
-    );
+  
     return executeQuery(
       `Select * from ${USER_TABLE_NAME} where email='${email}' ORDER BY ${USER_TABLE_COL.isActive} DESC`,
     );

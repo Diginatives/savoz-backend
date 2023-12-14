@@ -26,14 +26,6 @@ import ProductImageRepo from '../../../../database/repository/admin/ProductImage
 import CONSTANTS from '../../../../constants/constants';
 import ProductCategoryRepo from '../../../../database/repository/admin/ProductCategoryRepo';
 import moment from 'moment';
-import mysql from 'mysql';
-
-const con = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '',
-  database: 'savozdb',
-});
 const fs = require('fs');
 const csvToJson = require('csvtojson');
 
@@ -283,48 +275,9 @@ router.get(
     return new SuccessResponse('success', productsResponse(product[0])).send(res);
   }),
 );
-// router.post(
-//   '/update-imageName',
-//   asyncHandler(async (req: ProtectedRequest, res) => {
-//     const roleId = req['roleId'];
-//     const productStoreId = roleId === 1 ? 1 : 2;
-//     const { productId, productItemImage } = req.body;
-//     let data1 = '';
-//     if (productItemImage.split('/').length === 5) {
-//       const itemImage = productItemImage.split('/');
-//       data1 = itemImage[4];
-//     } else {
-//       const itemImage = productItemImage.split('/');
-//       data1 = itemImage[8];
-//     }
-//     const checkProduct: any = await ProductRepo.findById(productStoreId, productId);
-//     if (!checkProduct || checkProduct.length === 0)
-//       throw new NotFoundResponse('Product not found!').send(res);
 
-//     if (productId) {
-//       const product: any = await ProductRepo.updateProductImage(productId, data1);
-//       if (!product || product.length === 0)
-//         throw new BadRequestResponse('Product not updated').send(res);
-//       con.connect(async function (err) {
-//         if (err) throw new BadRequestResponse('Product image not saved').send(res);
-//         const sql = await `UPDATE productImages SET image ='${data1}' WHERE id = '${productId}'`;
-//         con.query(sql, async function (err, result) {
-//           if (err) throw new BadRequestResponse('Product image not saved').send(res);
-//           return new SuccessResponse('Product successfully Updated', sql).send(res);
-//         });
-//       });
-//       // const productImageRes: any = await ProductImageRepo.updateProductImage(productId, obj);
-//       // console.log(productImageRes, 'productImageRes');
-//       // if (!productImageRes || productImageRes.length === 0)
-//       //   throw new BadRequestResponse('Product image not saved').send(res);
-//       // return ;
-//       // https://api.savoz.pk/api/src/public/uploads/categories/default_sub_category.png
-//       return new SuccessResponse(product, `https://api.savoz.pk/savoz_images/${data1}`).send(res);
-//     }
-//   }),
-// );
 router.post(
-  '/update-imageName',
+  '/update-product',
   validator(schema.updateProductData, ValidationSource.BODY),
   asyncHandler(async (req: ProtectedRequest, res) => {
     const roleId = req['roleId'];
@@ -346,8 +299,8 @@ router.post(
       productUnitPrice,
       productComparativePrice,
       productItemSKU,
-      // productItemImage,
     } = req.body;
+
     const checkProduct: any = await ProductRepo.findById(productStoreId, productId);
     if (!checkProduct || checkProduct.length === 0)
       throw new NotFoundResponse('Product not found!').send(res);
@@ -416,120 +369,6 @@ router.post(
           throw new BadRequestResponse('Product image not saved').send(res);
       }
     }
-    return new SuccessResponse(
-      `https://api.savoz.pk/savoz_images/${productItemImage}`,
-      product,
-    ).send(res);
-  }),
-);
-
-router.post(
-  '/update-product',
-  validator(schema.updateProductData, ValidationSource.BODY),
-  asyncHandler(async (req: ProtectedRequest, res) => {
-    const roleId = req['roleId'];
-
-    const productStoreId = roleId === 1 ? 1 : 2;
-    const {
-      productId,
-      productItemName,
-      productItemDescription,
-      productCategoryId,
-      // productStoreId,
-      productIsActive,
-      productItemExpiry,
-      productIsTaxable,
-      productTaxPercentage,
-      productItemBarCode,
-      productPurchasedPrice,
-      productQuantity,
-      productItemBrand,
-      productUnitPrice,
-      productComparativePrice,
-      productItemSKU,
-      // productItemImage,
-    } = req.body;
-    let data1 = '';
-    if (req.body?.productItemImage?.split('/').length === 5) {
-      const itemImage = req.body?.productItemImage?.split('/');
-      data1 = itemImage[4];
-    } else if (req.body?.productItemImage?.split('/').length === 8) {
-      const itemImage = req.body?.productItemImage?.split('/');
-      data1 = itemImage[7];
-    } else {
-      const itemImage = req.body?.productItemImage?.split('/');
-      data1 = itemImage[8];
-    }
-    const checkProduct: any = await ProductRepo.findById(productStoreId, productId);
-    if (!checkProduct || checkProduct.length === 0)
-      throw new NotFoundResponse('Product not found!').send(res);
-
-    const productAlreadyExist: any = await ProductRepo.findByName(productItemName);
-    if (
-      productAlreadyExist &&
-      productAlreadyExist.length > 0 &&
-      productId != productAlreadyExist[0].productId
-    )
-      throw new BadRequestResponse('Product already Exist, Please use a different name.').send(res);
-
-    // let imageFile = '';
-    // const imageName: any = req['files'];
-    // if (imageName && imageName.length > 0) {
-    //   if (imageName[0].mimetype !== 'image/jpeg' && imageName[0].mimetype !== 'image/png') {
-    //     return new BadRequestResponse('Invalid file type').send(res);
-    //   }
-    //   imageFile = imageName[0].filename;
-    // }
-
-    // const productItemImage = imageFile;
-    const productItemImage = data1;
-    console.log(productItemImage, 'productItemImage');
-    const now = new Date();
-    const obj = [
-      productCategoryId,
-      productIsTaxable,
-      productTaxPercentage,
-      productQuantity,
-      productItemName,
-      productItemBrand,
-      productItemDescription,
-      productPurchasedPrice,
-      productUnitPrice,
-      productComparativePrice,
-      productIsActive,
-      productItemExpiry,
-      productStoreId,
-      productItemBarCode,
-      productItemSKU,
-      productItemImage,
-      now,
-    ];
-    const product: any = await ProductRepo.updateProduct(productId, obj);
-    if (!product || product.length === 0)
-      throw new BadRequestResponse('Product not updated').send(res);
-
-    // const checkProductImage: any = await ProductImageRepo.findByProductId(productId);
-    // let productImageRes: any = [];
-    // if (checkProductImage && checkProductImage.length > 0) {
-    //   // imageFile = checkProductImage[0].image;
-    //   const productImage = [imageFile];
-    //   productImageRes = await ProductImageRepo.updateProductImage(
-    //     checkProductImage[0].id,
-    //     productImage,
-    //   );
-    //   if (!productImageRes || productImageRes.length === 0)
-    //     throw new BadRequestResponse('Product image not saved').send(res);
-    // } else {
-    //   if (imageFile !== '') {
-    //     const productImage: ProductImage = {
-    //       productId: checkProduct[0].productId,
-    //       image: imageFile,
-    //     };
-    //     const productImageRes: any = await ProductImageRepo.createProductImage(productImage);
-    //     if (!productImageRes || productImageRes.length === 0)
-    //       throw new BadRequestResponse('Product image not saved').send(res);
-    //   }
-    // }
 
     return new SuccessResponse('Product successfully Updated', product).send(res);
   }),

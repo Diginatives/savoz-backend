@@ -114,7 +114,6 @@ router.post(
   validator(schema.reset_password, ValidationSource.BODY),
   asyncHandler(async (req, res) => {
     const user: any = await UserRepo.findByEmail(req.body.email);
-    // console.log(user, 'asfsa');
     if (user.length === 0 || !user) throw new NotFoundResponse('User not found').send(res);
     const token: any = await ForgotPasswordRepo.findByUserId(user[0].id, clientType.USER);
 
@@ -130,7 +129,7 @@ router.post(
     if (!forgotPassword.id || !forgotPassword.token) {
       throw new BadRequestResponse('Something went wrong. Please again reset password').send(res);
     }
-    const data1 = await sendEmail(
+    await sendEmail(
       user[0].email,
       '',
       'Reset Password',

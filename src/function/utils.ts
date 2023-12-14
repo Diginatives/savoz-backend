@@ -67,12 +67,12 @@ export const addBaseURLWeb = (url: string) => {
   console.log(url, 'addBaseURLWeb');
   if (envValue === 'development') {
     // return `https://laughing-jones-c6f0c1.netlify.app/${url}`;
-    // return `https://portal.savoz.pk/${url}`;
-    return `http://localhost:3000/${url}`;
+    return `https://portal.savoz.pk/${url}`;
+    // return `http://localhost:3000/${url}`;
   }
   // return `https://laughing-jones-c6f0c1.netlify.app/${url}`;
-  // return `https://portal.savoz.pk/${url}`;
-  return `http://localhost:3000/${url}`;
+  return `https://portal.savoz.pk/${url}`;
+  // return `http://localhost:3000/${url}`;
 };
 
 export const unLinkFile = async (directory: string, url: string) => {
@@ -92,7 +92,6 @@ export const getHomeUrl = (url: string) => {
 
 export const getHomeForImage = (url: string) => {
   const envValue: string = process.env.NODE_ENV || 'development';
-  console.log(`https://api.savoz.pk/${url}`, 'tayayb');
   if (envValue === 'development') {
     return `https://api.savoz.pk/${url}`;
   }

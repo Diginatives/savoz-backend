@@ -67,7 +67,6 @@ router.post(
   validator(schema.reset_password, ValidationSource.BODY),
   asyncHandler(async (req, res) => {
     const employee: any = await EmployeeRepo.findByEmail(req.body.email);
-    console.log(employee, 'employee');
     if (employee.length === 0 || !employee) throw new NotFoundResponse('User not found').send(res);
     const token: any = await ForgotPasswordRepo.findByUserId(employee[0].id, clientType.EMPLOYEE);
 
@@ -121,7 +120,6 @@ router.post(
     }).send(res);
   }),
 );
-
 
 router.post(
   '/new_password',

@@ -16,7 +16,6 @@ export default class EmployeeRepo {
   }
 
   public static async findByEmail(email: string): Promise<Employee | null> {
-    console.log(`Select * from ${EMPLOYEE_TABLE_NAME} where email='${email}'`, 'login admin');
     return executeQuery(`Select * from ${EMPLOYEE_TABLE_NAME} where email='${email}'`);
   }
 
